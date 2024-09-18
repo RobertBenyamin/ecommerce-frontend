@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { Box, Button, Input } from "@chakra-ui/react";
 import api from "../services/api";
-import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await api.post("/register", { name, email, password });
-    localStorage.setItem("token", response.data.token);
-    navigate("/");
+    localStorage.setItem("token", response.token);
+    window.location.href = "/";
   };
 
   return (
