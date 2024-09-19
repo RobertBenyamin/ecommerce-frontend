@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# E-Commerce Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Deskripsi
 
-## Available Scripts
+E-Commerce Platform adalah aplikasi web yang memungkinkan pengguna untuk membeli dan menjual barang secara online. Pengguna dapat mendaftar, login, melihat barang yang tersedia, dan membuat transaksi pembelian. Penjual dapat mengelola barang yang mereka jual, termasuk membuat, mengedit, dan menghapus item. Aplikasi ini terdiri dari frontend yang dibangun dengan React dan ChakraUI, dan backend yang dibangun dengan Golang dan PostgreSQL.
 
-In the project directory, you can run:
+## Fitur
 
-### `npm start`
+- **Pengguna:**
+  - Registrasi dan login
+  - Melihat barang yang tersedia
+  - Membeli barang
+- **Penjual:**
+  - Menambahkan item baru
+  - Mengedit item yang ada
+  - Menghapus item
+- **Keamanan:**
+  - Autentikasi pengguna menggunakan JWT
+  - Proteksi rute untuk halaman penjual
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend:**
+  - Node.js 
+  - npm 
+- **Backend:**
+  - Golang 
+  - PostgreSQL
+- **Tools:**
+  - Git
+  - Postman 
 
-### `npm test`
+## Instalasi
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
 
-### `npm run build`
+1. **Clone Repository**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/RobertBenyamin/ecommerce-frontend.git
+   cd ecommerce-frontend
+   ```
+2. **Instal Dependencies**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    npm install
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Konfigurasi**
 
-### `npm run eject`
+    Salin file .env.example menjadi .env dan sesuaikan nilai-nilai sesuai dengan konfigurasi Anda.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Jalankan Aplikasi**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    npm start
+    ```
+    Aplikasi akan berjalan pada http://localhost:3000.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Screenshot
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Login
+![login](images/login.png)
+### Register
+![register](images/register.png)
+### Home
+![home](images/home.png)
+### My Items for Sale
+![my-items-for-sale](images/sell.png)
+### Add Item
+![add-item](images/create-item.png)
+### Edit Item
+![edit-item](images/edit-item.png)
+### My Purchases
+![my-purchases](images/buy.png)
 
-## Learn More
+## Dokumentasi Flow Interaksi Frontend dengan Backend
+1. Login dan Registrasi:
+    - Pengguna memasukkan email dan password pada halaman login atau registrasi.
+    - Data dikirimkan ke endpoint /login atau /register.
+    - Jika berhasil, backend mengirimkan token JWT yang disimpan di localStorage.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Melihat Barang:
+    - Frontend mengirimkan request GET ke endpoint /items/.
+    - Backend mengirimkan data item yang tersedia.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Menambahkan Barang (Penjual):
+    - Penjual mengisi form untuk menambahkan item baru.
+    - Data dikirimkan ke endpoint /items/ dengan metode POST.
+    - Backend menyimpan item baru ke database dan mengirimkan konfirmasi.
 
-### Code Splitting
+4. Mengedit Barang (Penjual):
+    - Penjual mengakses halaman edit item dengan ID item.
+    - Data item dikirimkan ke endpoint /items/{id} dengan metode PUT.
+    - Backend memperbarui item di database dan mengirimkan konfirmasi.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+5. Menghapus Barang (Penjual):
+    - Penjual mengklik tombol hapus di item yang ingin dihapus.
+    - Request DELETE dikirim ke endpoint /items/{id}.
+    - Backend menghapus item dari database dan mengirimkan konfirmasi.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+6. Membeli Barang:
+    - Pengguna mengklik tombol beli di item yang ingin dibeli.
+    - Request POST dikirim ke endpoint /transactions/ dengan ID item.
+    - Backend membuat transaksi baru dan mengirimkan konfirmasi.
